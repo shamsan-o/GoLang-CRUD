@@ -18,16 +18,17 @@ type Movie struct {
 	Director *Director `json:"director"`
 }
 type Director struct {
-	Firstname string `json:"firstname"`
-	Lastname  string `json:"lastname"`
+	Firstname string `json:"first_Name"`
+	Lastname  string `json:"last_Name"`
 }
 
-var movies []Movie
 
+var movies []Movie
 func getMovies(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(movies)
 }
+
 
 func deleteMovie(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
@@ -42,6 +43,7 @@ func deleteMovie(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(movies)
 }
 
+
 func getMovie(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
@@ -53,6 +55,7 @@ func getMovie(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+
 func createMovie(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var movie Movie
@@ -61,6 +64,7 @@ func createMovie(w http.ResponseWriter, r *http.Request) {
 	movies = append(movies, movie)
 	json.NewEncoder(w).Encode(movie)
 }
+
 
 func updateMovie(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
@@ -77,6 +81,7 @@ func updateMovie(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 }
+
 
 func main() {
 	r := mux.NewRouter()
